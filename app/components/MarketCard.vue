@@ -4,67 +4,46 @@ import type { MarketItem } from '~/types/market'
 defineProps<{
   market: MarketItem
 }>()
-
-// 格式化价格 (0.72 -> 72¢)
-const formatPrice = (val: number) => Math.round(val * 100) + '¢'
 </script>
 
 <template>
-  <NuxtLink 
-    :to="`/market/${market.id}`"
-    class="group flex flex-col p-4 rounded-xl bg-surface border border-border hover:border-gray-300 hover:shadow-md transition-all duration-200 h-full relative overflow-hidden"
-  >
-    <!-- 顶部：图片与标题 -->
-    <div class="flex gap-4 mb-4">
-      <!-- 图片-->
-      <div class="w-12 h-12 shrink-0">
-        <img 
-          :src="market.image" 
-          class="w-full h-full object-cover rounded-md border border-gray-100" 
-          alt="" 
-          loading="lazy"
-        />
-      </div>
-      
-      <!-- 标题 -->
-      <h3 class="text-[15px] font-medium text-text-main leading-snug line-clamp-3 group-hover:text-poly-blue transition-colors">
+  <!-- 使用 bg-surface 代替硬编码颜色 -->
+  <article class="group cursor-pointer flex flex-col gap-3 p-4 rounded-xl bg-surface border border-gray-200 hover:border-gray-300 hover:shadow-sm transition-all duration-200">
+    
+    <div class="flex gap-3 items-start">
+      <!-- 
+        优化点：添加 loading="lazy" 和宽高属性防止布局抖动 
+        或者使用 NuxtImg (如果已安装模块)
+      -->
+      <img 
+        :src="market.image" 
+        alt="" 
+        loading="lazy"
+        width="40"
+        height="40"
+        class="w-10 h-10 rounded-full object-cover bg-gray-100 shrink-0" 
+      />
+      <!-- 使用 text-primary -->
+      <h3 class="font-medium text-primary leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
         {{ market.title }}
       </h3>
     </div>
 
-    <!-- 中间：交易按钮-->
-    <div class="mt-auto grid grid-cols-2 gap-2">
-      <!-- Buy Yes -->
-      <div class="flex flex-col items-center justify-center py-2 rounded-lg bg-poly-green/5 hover:bg-poly-green/10 border border-poly-green/20 transition-colors cursor-pointer">
-        <span class="text-xs font-bold text-poly-green">Yes</span>
-        <span class="text-sm font-bold text-poly-green">{{ formatPrice(market.outcomeYes) }}</span>
+    <div class="flex gap-2 mt-auto">
+      <!-- 使用 text-yes / bg-yes 的透明度变体 (Tailwind v4 自动支持) -->
+      <div class="flex-1 flex justify-between items-center px-3 py-2 rounded bg-emerald-50 hover:bg-emerald-100 transition-colors text-yes">
+        <span class="text-xs font-bold">Yes</span>
+        <span class="text-sm font-bold">{{ Math.round(market.outcomeYes * 100) }}%</span>
       </div>
-
-      <!-- Buy No -->
-      <div class="flex flex-col items-center justify-center py-2 rounded-lg bg-poly-red/5 hover:bg-poly-red/10 border border-poly-red/20 transition-colors cursor-pointer">
-        <span class="text-xs font-bold text-poly-red">No</span>
-        <span class="text-sm font-bold text-poly-red">{{ formatPrice(market.outcomeNo) }}</span>
+      
+      <div class="flex-1 flex justify-between items-center px-3 py-2 rounded bg-rose-50 hover:bg-rose-100 transition-colors text-no">
+        <span class="text-xs font-bold">No</span>
+        <span class="text-sm font-bold">{{ Math.round(market.outcomeNo * 100) }}%</span>
       </div>
     </div>
 
-    <!-- 底部：元数据 -->
-    <div class="mt-3 flex items-center gap-4 text-xs text-text-dim font-medium">
-      <!-- Volume -->
-      <div class="flex items-center gap-1">
-        <Icon name="lucide:bar-chart-2" class="text-gray-400" />
-        <span>{{ market.volume }} Vol.</span>
-      </div>
-      <!-- Comments (Mock) -->
-      <div class="flex items-center gap-1">
-        <Icon name="lucide:message-square" class="text-gray-400" />
-        <span>12</span>
-      </div>
+    <div class="text-xs text-secondary font-medium">
+      Vol. {{ market.volume }}
     </div>
-    
-    <!-- 右上角：概率图标  -->
-    <div class="absolute top-3 right-3">
-      <Icon name="lucide:star" class="text-gray-300 w-4 h-4 hover:text-yellow-400 transition" />
-    </div>
-
-  </NuxtLink>
+  </article>
 </template>

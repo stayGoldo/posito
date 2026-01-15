@@ -1,33 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  /* 字体 */
-  --font-sans: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  /* 颜色系统 (Polymarket 风格) */
-  --color-page: #fbfcfd;       /* 极浅的灰白背景 */
-  --color-surface: #ffffff;
-  --color-border: #e5e7eb;     /* 浅灰边框 */
+  /* 颜色系统 */
+  --color-page: #f8f9fa;       /* 生成 bg-page */
+  --color-surface: #ffffff;    /* 生成 bg-surface */
   
-  --color-text-main: #0f172a;
-  --color-text-dim: #64748b;
-
-  /* 核心交互色 */
-  --color-poly-blue: #2e62fd;  /* 品牌蓝 */
-  --color-poly-green: #00bfa5; /* Yes / Buy */
-  --color-poly-red: #e11d48;   /* No / Sell */
+  --color-primary: #1a1a1a;    /* 主要文字 */
+  --color-secondary: #6b7280;  /* 次要文字 */
   
-  /* 尺寸 */
-  --h-navbar: 60px;            /* 顶部导航高度 */
-  --h-subnav: 48px;            /* 二级类目栏高度 */
+  --color-yes: #00bfa5;        /* 涨/Yes */
+  --color-no: #e11d48;         /* 跌/No */
+
+  /* 布局变量 (不需要生成颜色类，仅作变量使用) */
+  --header-height: 64px;
 }
 
+/* 基础重置 */
 @layer base {
   body {
-    background-color: var(--color-page);
-    color: var(--color-text-main);
-    font-family: var(--font-sans);
-    -webkit-font-smoothing: antialiased;
+    /* 直接使用生成的类名，或者直接引用变量 */
+    @apply bg-page text-primary font-sans antialiased;
   }
 }
