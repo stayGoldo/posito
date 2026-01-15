@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  /* 字体 */
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* 颜色系统 (Polymarket 风格) */
+  --color-page: #fbfcfd;       /* 极浅的灰白背景 */
+  --color-surface: #ffffff;
+  --color-border: #e5e7eb;     /* 浅灰边框 */
+  
+  --color-text-main: #0f172a;
+  --color-text-dim: #64748b;
+
+  /* 核心交互色 */
+  --color-poly-blue: #2e62fd;  /* 品牌蓝 */
+  --color-poly-green: #00bfa5; /* Yes / Buy */
+  --color-poly-red: #e11d48;   /* No / Sell */
+  
+  /* 尺寸 */
+  --h-navbar: 60px;            /* 顶部导航高度 */
+  --h-subnav: 48px;            /* 二级类目栏高度 */
+}
+
+@layer base {
+  body {
+    background-color: var(--color-page);
+    color: var(--color-text-main);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
