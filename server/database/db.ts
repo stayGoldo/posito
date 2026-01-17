@@ -1,6 +1,5 @@
 import { drizzle } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
-// 使用相对路径，确保在 server 目录下引用正确
 import * as schema from '../database/schema'
 
 const config = useRuntimeConfig()
