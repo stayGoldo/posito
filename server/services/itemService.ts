@@ -1,6 +1,7 @@
 import { eq, desc } from 'drizzle-orm'
-import { db } from '../database/db'
+import { useDb } from '../database/db'
 import { items, type NewItem } from '../database/schema'
+import { C } from 'vue-router/dist/router-CWoNjPRp.mjs'
 
 /**
  * Item 业务逻辑服务
@@ -9,6 +10,7 @@ import { items, type NewItem } from '../database/schema'
 export const itemService = {
   // 获取列表
   async getList() {
+    const db = useDb()
     return await db.select()
       .from(items)
       .orderBy(desc(items.CreatedAt)) // 加上排序
@@ -18,6 +20,8 @@ export const itemService = {
   async create(data: NewItem) {
     //  可以在这里做业务检查，例如：
     // if (data.name.includes('敏感词')) throw new Error('Invalid name')
+
+    const db = useDb()
     
     const result = await db.insert(items)
       .values(data)
@@ -28,6 +32,7 @@ export const itemService = {
 
   // 根据ID获取
   async getById(id: number) {
+    const db = useDb()
     const result = await db.select()
       .from(items)
       .where(eq(items.id, id))
@@ -37,6 +42,7 @@ export const itemService = {
   },
   // 删除条目
     async delete(id: number) {
+    const db = useDb()
     const result = await db.delete(items)
       .where(eq(items.id, id))
       .returning({ deletedId: items.id })
