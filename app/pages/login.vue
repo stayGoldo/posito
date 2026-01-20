@@ -36,7 +36,7 @@ const handleLogin = async () => {
     })
 
     // 登录成功：保存 Token 到 Cookie
-    tokenCookie.value = res.token
+    tokenCookie.value = res.accessToken
 
     // 跳转到首页或仪表盘
     await navigateTo('/') 
