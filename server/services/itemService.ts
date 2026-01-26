@@ -1,7 +1,7 @@
 import { eq, desc } from 'drizzle-orm'
 import { useDb } from '../database/db'
 import { items, type NewItem } from '../database/schema'
-import { C } from 'vue-router/dist/router-CWoNjPRp.mjs'
+
 
 /**
  * Item 业务逻辑服务
