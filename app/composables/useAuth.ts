@@ -34,6 +34,7 @@ export const useAuth = () => {
                 body: {username, password}
             });
             setAuthState(data.accessToken);
+            return true;
         }catch(e){
             console.error('login failed', e);
             return false;

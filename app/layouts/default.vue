@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import AuthWidget from '~/components/AuthWidget.vue';
+
 // Layout 逻辑层
 </script>
 
@@ -17,8 +19,9 @@
       </div>
 
       <div class="flex gap-3">
-        <button class="px-4 py-2 text-sm font-medium hover:bg-gray-50 rounded-lg transition">Log In</button>
-        <button class="px-4 py-2 text-sm font-medium bg-primary text-white rounded-lg hover:opacity-90 transition">Sign Up</button>
+        <div class="px-4 py-2 text-sm font-medium hover:bg-gray-50 rounded-lg transition">
+          <auth-widget />
+        </div>
       </div>
     </header>
 
