@@ -13,10 +13,13 @@ export default defineNuxtConfig({
       apiBase: process.env.NUXT_PUBLIC_API_BASE || '/api'
     }
   },
-  modules: [
-    '@nuxt/icon',  // 新增：图标
-    '@nuxt/fonts'  // 新增：字体
-  ],
+  modules: [// 新增：图标
+  '@nuxt/icon', // 新增：字体
+  '@nuxt/fonts', 'shadcn-nuxt'],  
+  shadcn:{
+    prefix: '',
+    componentDir: '@/components/ui'
+  },
   // 配置 Google Fonts (自动优化)
   fonts: {
     families: [

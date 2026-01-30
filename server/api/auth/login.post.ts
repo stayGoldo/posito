@@ -28,7 +28,10 @@ export default defineEventHandler(async (event) => {
     }
 
     //生成 access token
-    const accessToken = await new SignJWT({ sub: user.id })
+    const accessToken = await new SignJWT({ 
+        sub: user.id,
+        username: user.username
+        })
         .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
         .setIssuedAt()
         .setExpirationTime('10m') // 令牌有效期 10 分钟
