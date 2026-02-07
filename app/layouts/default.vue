@@ -9,7 +9,7 @@ import AuthWidget from '~/components/AuthWidget.vue';
     <!-- Header-->
     <header class="fixed top-0 left-0 right-0 z-50 h-[var(--header-height)] bg-surface border-b border-gray-200 px-4 flex items-center justify-between">
       <div class="font-bold text-xl tracking-tight">
-        PolyClone <span class="text-xs text-secondary font-normal">2026</span>
+        Posito <span class="text-xs text-secondary font-normal">2026</span>
       </div>
 
       <div class="hidden md:block flex-1 max-w-md mx-4">

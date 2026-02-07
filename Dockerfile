@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 COPY . .
-# 这一步会读取 .env 里的变量吗？不会，构建时不需要数据库连接
+
 RUN pnpm run build
 
 # Stage 2: 运行

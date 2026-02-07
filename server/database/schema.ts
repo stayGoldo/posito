@@ -1,7 +1,7 @@
 import { InferInsertModel, InferSelectModel ,relations} from 'drizzle-orm'
-import { pgTable, uuid,serial, text ,timestamp,boolean, index} from 'drizzle-orm/pg-core'
+import { pgTable, uuid,serial, text ,timestamp,boolean, index, pgEnum} from 'drizzle-orm/pg-core'
 
-
+import { ARTICLES_STATUS } from '../../shared/constants/articles'
 
 export const items = pgTable('items', {
   id: serial('id').primaryKey(),
@@ -49,3 +49,17 @@ export type NewRefreshToken = InferInsertModel<typeof refreshTokens>
 export const usersRelations = relations(users,({many})=>({
   refreshTokens: many(refreshTokens)
 }));
+
+//========================= 以下为文章相关 ========================
+// 复用 Shared 中的常量定义枚举
+export const statusEnum = pgEnum('article_status', ARTICLES_STATUS)
+
+export const articles = pgTable('articles', {
+  id: serial('id').primaryKey(),
+  title: text('title').notNull(),
+  content: text('content').notNull(),
+  // 确保数据库存储的值严格符合契约
+  status: statusEnum('status').default('draft').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+})

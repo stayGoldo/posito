@@ -45,7 +45,7 @@ export const useAuth = () => {
 
     const refreshToken = async() => {
         try{
-            const data = await $fetch<{accessToken: string}>('api/auth/refresh',{
+            const data = await $fetch<{accessToken: string}>('/api/auth/refresh',{
                 method: 'POST'
             });
             setAuthState(data.accessToken);
